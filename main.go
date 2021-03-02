@@ -21,7 +21,16 @@ func main() {
 		fmt.Printf("%f\n", answer)
 	}
 
-	println("\n\nSemantic version")
+	addExpression := simplemath.Expression(simplemath.Add)
+	fmt.Printf("%f\n", addExpression(1, 2))
+
+	multiplyExpression := simplemath.Expression(simplemath.Multiply)
+	fmt.Printf("%f\n", multiplyExpression(3, 2))
+
+	result := simplemath.Double(4, 6, simplemath.Expression(simplemath.Multiply)) // 2 * (4*6)
+	fmt.Printf("%f\n", result)
+
+	println("\n\nSemantic version:")
 	sv := version.NewSemanticVersion(0, 1, 0)
 	sv.IncrementMajor()
 	sv.IncrementMajor()
