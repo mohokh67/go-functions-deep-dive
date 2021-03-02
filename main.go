@@ -30,6 +30,14 @@ func main() {
 	result := simplemath.Double(4, 6, simplemath.Expression(simplemath.Multiply)) // 2 * (4*6)
 	fmt.Printf("%f\n", result)
 
+	p2 := simplemath.PowerOfTwo()
+	value := p2() // x = 2
+	println(value)
+	value = p2() // x = 3
+	println(value)
+	value = p2() // x = 4
+	println(value)
+
 	println("\n\nSemantic version:")
 	sv := version.NewSemanticVersion(0, 1, 0)
 	sv.IncrementMajor()

@@ -2,6 +2,7 @@ package simplemath
 
 import (
 	"errors"
+	"math"
 )
 
 type MathExpression = string
@@ -57,4 +58,14 @@ func Expression(expression MathExpression) func(float64, float64) float64 {
 
 func Double(num1, num2 float64, mathExpression func(float64, float64) float64) float64 {
 	return 2 * mathExpression(num1, num2)
+}
+
+func PowerOfTwo() func() int64 {
+	x := 1.0
+	// stateful function.
+	// Everytime we call this function, it add 1 to the previous value
+	return func() int64 {
+		x++
+		return int64(math.Pow(x, 2))
+	}
 }
