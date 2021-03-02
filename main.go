@@ -30,8 +30,8 @@ func main() {
 	result := simplemath.Double(4, 6, simplemath.Expression(simplemath.Multiply)) // 2 * (4*6)
 	fmt.Printf("%f\n", result)
 
-	p2 := simplemath.PowerOfTwo()
-	value := p2() // x = 2
+	p2 := simplemath.PowerOfTwo() // Look into the func PowerOfTwo(), x = 1
+	value := p2()                 // x = 2
 	println(value)
 	value = p2() // x = 3
 	println(value)
