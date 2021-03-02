@@ -69,3 +69,15 @@ func PowerOfTwo() func() int64 {
 		return int64(math.Pow(x, 2))
 	}
 }
+
+func PowerOfTwoTill(max int) []func() int64 {
+	var funcs []func() int64
+	for i := 0; i < max; i++ {
+		cleanI := i // Make sure the value i is not max all the time, i itself is a bad state
+		funcs = append(funcs, func() int64 {
+			return int64(math.Pow(float64(cleanI), 2))
+		})
+	}
+
+	return funcs
+}

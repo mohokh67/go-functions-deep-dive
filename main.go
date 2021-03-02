@@ -38,6 +38,12 @@ func main() {
 	value = p2() // x = 4
 	println(value)
 
+	println("\n\npowerOfTwoTill:")
+	funcs := simplemath.PowerOfTwoTill(9)
+	for _, f := range funcs {
+		println(f())
+	}
+
 	println("\n\nSemantic version:")
 	sv := version.NewSemanticVersion(0, 1, 0)
 	sv.IncrementMajor()
