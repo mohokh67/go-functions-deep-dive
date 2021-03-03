@@ -3,12 +3,33 @@ package main
 import (
 	"fmt"
 
+	cf "go-functions-deep-dive/controlflow"
 	"go-functions-deep-dive/simplemath"
 	"go-functions-deep-dive/version"
 )
 
 func main() {
+	// simpleMath()
+	// semanticVersion()
 
+	cf.ReadSomething()
+
+}
+
+func semanticVersion() {
+	println("\n\nSemantic version:")
+	sv := version.NewSemanticVersion(0, 1, 0)
+	sv.IncrementMajor()
+	sv.IncrementMajor()
+	sv.IncrementMinor()
+	sv.IncrementPatch()
+	sv.IncrementPatch()
+	sv.IncrementPatch()
+	sv.IncrementPatch()
+	println(sv.String())
+}
+
+func simpleMath() {
 	numbers := []int{4, 1, 10, 4}
 	a := simplemath.Sum(numbers...)
 	// a := simplemath.Sum(4, 1, 10, 4)
@@ -43,16 +64,4 @@ func main() {
 	for _, f := range funcs {
 		println(f())
 	}
-
-	println("\n\nSemantic version:")
-	sv := version.NewSemanticVersion(0, 1, 0)
-	sv.IncrementMajor()
-	sv.IncrementMajor()
-	sv.IncrementMinor()
-	sv.IncrementPatch()
-	sv.IncrementPatch()
-	sv.IncrementPatch()
-	sv.IncrementPatch()
-	println(sv.String())
-
 }
