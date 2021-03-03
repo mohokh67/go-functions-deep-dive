@@ -12,8 +12,12 @@ func main() {
 	// simpleMath()
 	// semanticVersion()
 
-	cf.ReadSomething()
-	cf.ReadFullFile()
+	// cf.ReadSomething()
+	println()
+	err := cf.ReadFullFile()
+	if err != nil {
+		println(err.Error())
+	}
 
 }
 

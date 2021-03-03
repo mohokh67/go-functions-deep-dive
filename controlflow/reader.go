@@ -17,6 +17,11 @@ func (br BadReader) Read(p []byte) (n int, err error) {
 	return -1, br.err
 }
 
+func (sr *SimpleReader) Close() error {
+	println("closing reader...")
+	return nil
+}
+
 func (sr *SimpleReader) Read(p []byte) (n int, err error) {
 	if sr.count == 3 {
 		panic("Something very very bad happended")
@@ -38,13 +43,22 @@ func ReadSomething() error {
 	return nil
 }
 
-func ReadFullFile() error {
-	var r io.Reader = &SimpleReader{}
+func ReadFullFile() (err error) {
+	var r io.ReadCloser = &SimpleReader{}
 	defer func() {
 		// Work like First In Last Out , FILO - So we can have multiple defer func
 		// Always run after returning value in a function
 		// e.g. could be file close, db connection close etc.
-		println("I am a defer function, ")
+		_ = r.Close()
+		if p := recover(); p != nil {
+			println(p)
+			err = errors.New("a panic happenned but recovered. It's ok for now")
+		}
+	}()
+
+	defer func() {
+		// not a good practice, we don't need multiple panic.
+		println("defer func before loop")
 	}()
 
 	for {
@@ -53,10 +67,15 @@ func ReadFullFile() error {
 			println("Finish reading file, breaking out of loop")
 			break
 		} else if readerErr != nil {
-			return readerErr
+			err = readerErr
+			return
 		}
 		println(value)
 	}
+	defer func() {
+		// not a good practice, we don't need multiple panic.
+		println("defer func after loop")
+	}()
 
 	return nil
 
