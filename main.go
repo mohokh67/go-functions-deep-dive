@@ -13,6 +13,7 @@ func main() {
 	// semanticVersion()
 
 	cf.ReadSomething()
+	cf.ReadFullFile()
 
 }
 
